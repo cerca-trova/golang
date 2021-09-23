@@ -4,13 +4,14 @@ import "fmt"
 
 // How to define a map
 
-func define_a_map() {
+func define_a_map() string {
 	// var m map[string]int, This sentence define a map but not initialize
 	m := make(map[string]int) // Define and initialize
 	m["first"] = 1
 
-	fmt.Println("After initializtion, m['first'] is :", m["first"])
-
+	fmt.Println("After initialization, m['first'] is :", m["first"])
+	// declare a nil map
+	var nil_map map[string]string
 	// Map have some embedded method
 	// 1. DELETE
 	delete(m, "first") // After deletion, m would be {"first": 0}, 1-->0
@@ -29,13 +30,26 @@ func define_a_map() {
 		"F":  "Fluorine",
 		"Ne": "Neon",
 	}
+	// Retrieving a value from a map and testing existence
+	value, existed := elements["C"]
+	if existed {
+		fmt.Println(value)
+	}
 
-	v1, v2 := elements["H"]
-	fmt.Println(v1, v2)
-
+	// or like this
+	if value != "" {
+		fmt.Println(value)
+	}
 	if v1, v2 := elements["H"]; v2 {
 		fmt.Println(v1, v2)
 	}
+
+	// Iterating over a  mao using for range
+	for key, value := range elements {
+		fmt.Printf("key: %s value : %s \n", key, value)
+	}
+
+	return nil_map[""]
 }
 
 func main() {

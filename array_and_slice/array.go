@@ -52,7 +52,7 @@ func length_and_capacity_of_slice() []int {
 
 	newSlice := orignal_slice[1:3]
 	appendedSlice := append(newSlice, 60)            // underlying array changed to [10,20,30,60,50]
-	outCapacitySlice := append(newSlice, 60, 70, 80) // if new slice's length overpass its underlying array, a new underlying will be allocated and its capacity will be doubled
+	outCapacitySlice := append(newSlice, 60, 70, 80) // if new slice's length overpass its underlying array, a new underlying array will be allocated and its capacity will be doubled
 	// In this case, capacity increased from 4 to 8
 	fmt.Println("orignal slice is :", orignal_slice)
 	fmt.Printf("orignal slice's length is %d capacity is %d \n", len(orignal_slice), cap(orignal_slice))
@@ -66,8 +66,16 @@ func length_and_capacity_of_slice() []int {
 	return slice_nil
 
 }
+
+func passing_slice_between_functions(slice []int) []int {
+	// define a slice with 1 million intergers.
+	return slice // return its pointer,length and capacity, not its huge underlying array.
+
+}
 func main() {
+	slice := make([]int, 1e6)
 	define_an_array()
 	define_an_slice()
 	length_and_capacity_of_slice()
+	passing_slice_between_functions(slice)
 }
